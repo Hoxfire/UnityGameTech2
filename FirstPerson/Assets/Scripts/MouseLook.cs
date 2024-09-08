@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
@@ -19,17 +20,23 @@ public class MouseLook : MonoBehaviour
     [SerializeField] float xClamp = 85f;
     float xRotation = 0f;
 
+    public Vector2 mouseDelta;
+
     // Start is called before the first frame update
     void Start()
     {
         playerControles = GetComponent<InputManager>().controls;
         playerControles.GroundMove.LookX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         playerControles.GroundMove.LookY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        mouseDelta = Mouse.current.delta.ReadValue();
+        
         //Horizontal
         mouseX = mouseInput.x * horizontalSens;
         transform.Rotate(Vector3.up, mouseX * Time.deltaTime);
