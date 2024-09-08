@@ -20,12 +20,16 @@ public class InputManager : MonoBehaviour
 
         movement = GetComponent<PlayerMove>();
         groundMove.Jump.performed += _u => movement.shouldJump();
+
+        //groundMove.DriveMode.performed += _u => movement.SwitchInput();
     }
 
     void Update()
     {
         movement.ReciveInput(horizontalMove);
     }
+
+
 
     private void OnEnable()
     {

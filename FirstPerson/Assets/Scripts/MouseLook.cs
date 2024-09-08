@@ -22,6 +22,8 @@ public class MouseLook : MonoBehaviour
 
     public Vector2 mouseDelta;
 
+    PlayerMove player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,29 +31,35 @@ public class MouseLook : MonoBehaviour
         playerControles.GroundMove.LookX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         playerControles.GroundMove.LookY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
         Cursor.lockState = CursorLockMode.Locked;
+        player = GameObject.Find("Player").GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        mouseDelta = Mouse.current.delta.ReadValue();
-        
-        //Horizontal
-        mouseX = mouseInput.x * horizontalSens;
-        transform.Rotate(Vector3.up, mouseX * Time.deltaTime);
+        if (player.inputState == InputState.PlayerInput)
+        {
 
-        //Vertical
-        mouseY = mouseInput.y * verticalSens;
 
-        xRotation -= mouseY;
+            mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            mouseDelta = Mouse.current.delta.ReadValue();
 
-        xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
+            //Horizontal
+            mouseX = mouseInput.x * horizontalSens;
+            transform.Rotate(Vector3.up, mouseX * Time.deltaTime);
 
-        Vector3 targetRotation = mainCamera.eulerAngles;
+            //Vertical
+            mouseY = mouseInput.y * verticalSens;
 
-        targetRotation.x = xRotation;
+            xRotation -= mouseY;
 
-        mainCamera.eulerAngles = targetRotation;
+            xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
+
+            Vector3 targetRotation = mainCamera.eulerAngles;
+
+            targetRotation.x = xRotation;
+
+            mainCamera.eulerAngles = targetRotation;
+        }
     }
 }

@@ -1401,13 +1401,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7470333, y: 0.097478084, z: 0.46678883, w: -0.46319267}
+  m_LocalRotation: {x: 0.41130543, y: -0.14847767, z: 0.7789599, w: -0.44944835}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -51.54, y: -257.452, z: -152.542}
+  m_LocalEulerAnglesHint: {x: -7.956, y: -308.577, z: -123.867}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3381,7 +3381,7 @@ GameObject:
   - component: {fileID: 1168658547}
   - component: {fileID: 1168658551}
   m_Layer: 0
-  m_Name: Car
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3401,11 +3401,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 1168658549}
   speed: 10
+  turnSpeed: 90.8
   gravity: -20
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   jumpHeight: 3.5
+  inputState: 1
 --- !u!114 &1168658548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3509,7 +3511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _TextureWarpingFactor: 1
   _TextureWarpingMode: 0
-  _VertexGridResolution: 100
+  _VertexGridResolution: 64
   _VertexWobbleMode: 0
   _UseRetroVertexLighting: 1
   _RetroLightingNormalFactor: 0
@@ -5047,7 +5049,7 @@ GameObject:
   - component: {fileID: 5301600310531502072}
   - component: {fileID: 5301600310531502073}
   m_Layer: 0
-  m_Name: sedan-sports
+  m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

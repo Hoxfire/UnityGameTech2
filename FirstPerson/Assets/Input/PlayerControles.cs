@@ -62,6 +62,15 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DriveMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""03e596ee-4191-4d7d-a4ca-f05b11fd0379"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,109 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
                     ""action"": ""LookY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""595af3b8-e3dc-4a0f-86a5-6eae23292a9f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DriveMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""CarMove"",
+            ""id"": ""1cc82b48-a4c9-411f-885d-8a93eb42e694"",
+            ""actions"": [
+                {
+                    ""name"": ""Steer"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""16bca922-239d-4ae4-8ee1-5fe913770e32"",
+                    ""expectedControlType"": ""Key"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pedal"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d7bb9984-ece1-4f52-889e-a9e64e94f553"",
+                    ""expectedControlType"": ""Key"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""ebe12876-74d0-4eca-bf07-2f787d1d2e4c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pedal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""69d56e6c-ab41-4d45-b6ce-93a35d560656"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pedal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e929f637-18ae-4fb1-82e3-28cc66e7161a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pedal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""c16e2af4-c639-4f3f-ab04-661786fe5ebd"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steer"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""484b3faa-82ba-468e-8930-88e48c75e175"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""7360d68d-1b8e-4541-baf4-d317f9d10413"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -170,6 +282,11 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
         m_GroundMove_Jump = m_GroundMove.FindAction("Jump", throwIfNotFound: true);
         m_GroundMove_LookX = m_GroundMove.FindAction("LookX", throwIfNotFound: true);
         m_GroundMove_LookY = m_GroundMove.FindAction("LookY", throwIfNotFound: true);
+        m_GroundMove_DriveMode = m_GroundMove.FindAction("DriveMode", throwIfNotFound: true);
+        // CarMove
+        m_CarMove = asset.FindActionMap("CarMove", throwIfNotFound: true);
+        m_CarMove_Steer = m_CarMove.FindAction("Steer", throwIfNotFound: true);
+        m_CarMove_Pedal = m_CarMove.FindAction("Pedal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -235,6 +352,7 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
     private readonly InputAction m_GroundMove_Jump;
     private readonly InputAction m_GroundMove_LookX;
     private readonly InputAction m_GroundMove_LookY;
+    private readonly InputAction m_GroundMove_DriveMode;
     public struct GroundMoveActions
     {
         private @PlayerControles m_Wrapper;
@@ -243,6 +361,7 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GroundMove_Jump;
         public InputAction @LookX => m_Wrapper.m_GroundMove_LookX;
         public InputAction @LookY => m_Wrapper.m_GroundMove_LookY;
+        public InputAction @DriveMode => m_Wrapper.m_GroundMove_DriveMode;
         public InputActionMap Get() { return m_Wrapper.m_GroundMove; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +383,9 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
             @LookY.started += instance.OnLookY;
             @LookY.performed += instance.OnLookY;
             @LookY.canceled += instance.OnLookY;
+            @DriveMode.started += instance.OnDriveMode;
+            @DriveMode.performed += instance.OnDriveMode;
+            @DriveMode.canceled += instance.OnDriveMode;
         }
 
         private void UnregisterCallbacks(IGroundMoveActions instance)
@@ -280,6 +402,9 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
             @LookY.started -= instance.OnLookY;
             @LookY.performed -= instance.OnLookY;
             @LookY.canceled -= instance.OnLookY;
+            @DriveMode.started -= instance.OnDriveMode;
+            @DriveMode.performed -= instance.OnDriveMode;
+            @DriveMode.canceled -= instance.OnDriveMode;
         }
 
         public void RemoveCallbacks(IGroundMoveActions instance)
@@ -297,6 +422,60 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
         }
     }
     public GroundMoveActions @GroundMove => new GroundMoveActions(this);
+
+    // CarMove
+    private readonly InputActionMap m_CarMove;
+    private List<ICarMoveActions> m_CarMoveActionsCallbackInterfaces = new List<ICarMoveActions>();
+    private readonly InputAction m_CarMove_Steer;
+    private readonly InputAction m_CarMove_Pedal;
+    public struct CarMoveActions
+    {
+        private @PlayerControles m_Wrapper;
+        public CarMoveActions(@PlayerControles wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Steer => m_Wrapper.m_CarMove_Steer;
+        public InputAction @Pedal => m_Wrapper.m_CarMove_Pedal;
+        public InputActionMap Get() { return m_Wrapper.m_CarMove; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CarMoveActions set) { return set.Get(); }
+        public void AddCallbacks(ICarMoveActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CarMoveActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CarMoveActionsCallbackInterfaces.Add(instance);
+            @Steer.started += instance.OnSteer;
+            @Steer.performed += instance.OnSteer;
+            @Steer.canceled += instance.OnSteer;
+            @Pedal.started += instance.OnPedal;
+            @Pedal.performed += instance.OnPedal;
+            @Pedal.canceled += instance.OnPedal;
+        }
+
+        private void UnregisterCallbacks(ICarMoveActions instance)
+        {
+            @Steer.started -= instance.OnSteer;
+            @Steer.performed -= instance.OnSteer;
+            @Steer.canceled -= instance.OnSteer;
+            @Pedal.started -= instance.OnPedal;
+            @Pedal.performed -= instance.OnPedal;
+            @Pedal.canceled -= instance.OnPedal;
+        }
+
+        public void RemoveCallbacks(ICarMoveActions instance)
+        {
+            if (m_Wrapper.m_CarMoveActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICarMoveActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CarMoveActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CarMoveActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CarMoveActions @CarMove => new CarMoveActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -312,5 +491,11 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLookX(InputAction.CallbackContext context);
         void OnLookY(InputAction.CallbackContext context);
+        void OnDriveMode(InputAction.CallbackContext context);
+    }
+    public interface ICarMoveActions
+    {
+        void OnSteer(InputAction.CallbackContext context);
+        void OnPedal(InputAction.CallbackContext context);
     }
 }
