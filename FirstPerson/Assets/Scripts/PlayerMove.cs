@@ -40,11 +40,9 @@ public class PlayerMove : MonoBehaviour
         {
             case InputState.PlayerInput:
                 NormalMove();
-                //SwitchInput();
                 break;
             case InputState.CarInput:
                 CarMove();
-                //SwitchInput();
                 break;
             case InputState.Keyboard:
                 break;
