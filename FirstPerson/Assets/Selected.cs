@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class Selected : MonoBehaviour
 {
-    GameObject script;
-    MeshRenderer renderer;
+    PlayerSelect script;
+    MeshRenderer john;
     [SerializeField] Material material;
+    [SerializeField] float distance;
 
     private void Awake()
     {
-        script = GameObject.Find("Player"); 
-        renderer = gameObject.GetComponent<MeshRenderer>();
+        script = GameObject.Find("Player").GetComponent<PlayerSelect>(); 
+        john = gameObject.GetComponent<MeshRenderer>();
     }
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(script.GetComponent<PlayerSelect>().hit.transform.name);
-        if (script.GetComponent<PlayerSelect>().hit.transform == transform)
+        if (script.hit.collider != null)
         {
-            renderer.materials[1] = material;
-            Debug.Log("hit");
+            if (script.hit.collider.transform == transform && script.hit.distance<=distance)
+            {
+                //john.materials[1] = material;
+                john.material = material;
+                Debug.Log("hit");
+            }
+            else
+            {
+                john.material = john.materials[1];
+            }
         }
         else
         {
-            renderer.materials[1] = null;
+            john.material = john.materials[1];
         }
     }
 }
