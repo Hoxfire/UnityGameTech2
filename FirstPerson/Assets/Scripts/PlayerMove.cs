@@ -34,8 +34,8 @@ public class PlayerMove : MonoBehaviour
         VertivalVolocity.y += gravity * Time.deltaTime;
         characterController.Move(VertivalVolocity * Time.deltaTime);
         CheckGround();
-        NormalMove();
-        /*
+        //NormalMove();
+        
         switch (inputState)
         {
             case InputState.PlayerInput:
@@ -53,7 +53,7 @@ public class PlayerMove : MonoBehaviour
             default:
                 break;
         }
-        */
+        
     }
 
     public void SwitchInput() 
