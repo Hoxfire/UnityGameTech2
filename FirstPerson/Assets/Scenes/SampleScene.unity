@@ -5138,7 +5138,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 13.56
+  far clip plane: 30.6
   field of view: 60
   orthographic: 1
   orthographic size: 22.85
@@ -16678,6 +16678,7 @@ GameObject:
   - component: {fileID: 5301600310531502071}
   - component: {fileID: 5301600310531502072}
   - component: {fileID: 5301600310531502073}
+  - component: {fileID: 5301600310531502074}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -16763,6 +16764,27 @@ CapsuleCollider:
   m_Height: 5
   m_Direction: 2
   m_Center: {x: 0, y: 1.37, z: 0}
+--- !u!65 &5301600310531502074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816812866896459085}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.75, y: 1, z: 4.5}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &5970895744029251590
 GameObject:
   m_ObjectHideFlags: 0
