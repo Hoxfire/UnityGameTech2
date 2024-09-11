@@ -7,7 +7,10 @@ using Physics = RotaryHeart.Lib.PhysicsExtension.Physics;
 public class PlayerMove : MonoBehaviour
 {
     public CharacterController characterController;
+    [SerializeField] Rigidbody rb;
+    Collider car;
     public float speed = 10.0f;
+    public float carSpeed = 10.0f;
     public float turnSpeed = 10.0f;
 
     Vector2 horizontalInput;
@@ -27,21 +30,27 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         inputState = InputState.PlayerInput;
+        car = gameObject.GetComponent<BoxCollider>();
     }
 
     void Update()
     {
         VertivalVolocity.y += gravity * Time.deltaTime;
-        characterController.Move(VertivalVolocity * Time.deltaTime);
         CheckGround();
         //NormalMove();
         
         switch (inputState)
         {
             case InputState.PlayerInput:
+                rb.isKinematic = true;
+                characterController.enabled = true;
+                car.enabled = false;   
                 NormalMove();
                 break;
             case InputState.CarInput:
+                rb.isKinematic = false;
+                characterController.enabled = false;
+                car.enabled = true;
                 CarMove();
                 break;
             case InputState.Keyboard:
@@ -72,9 +81,11 @@ public class PlayerMove : MonoBehaviour
 
     void NormalMove() 
     {
+        rb.useGravity = false;
         Vector3 john = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * speed;
         characterController.Move(john * Time.deltaTime);
 
+        characterController.Move(VertivalVolocity * Time.deltaTime);
         if (isJumping)
         {
             jump();
@@ -83,14 +94,16 @@ public class PlayerMove : MonoBehaviour
 
     void CarMove() 
     {
-        Vector3 john = (transform.forward * horizontalInput.y) * speed;
+        rb.useGravity = true;
+        Vector3 john = (transform.forward * horizontalInput.y) * carSpeed;
         Vector3 james = (transform.up * horizontalInput.x) * turnSpeed;
 
         //Debug.Log(john + (transform.right * horizontalInput.x));
 
-        characterController.Move(john * Time.deltaTime);
+        rb.AddForce(new Vector3(john.x,0,john.z));
 
-        transform.Rotate(transform.up, james.y * Time.deltaTime);
+        //transform.Rotate(transform.up , james.y * Time.deltaTime);
+        rb.AddTorque(0,james.y * Time.deltaTime,0,ForceMode.Acceleration);
     }
 
     public void shouldJump()
