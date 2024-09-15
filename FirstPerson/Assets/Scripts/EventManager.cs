@@ -10,6 +10,8 @@ public class EventManager : MonoBehaviour
 
     public static event Action<int> OpenDoorEvent;
 
+    public static event Action Delivered;
+
     public static void OpenDoor(int id) 
     {
         OpenDoorEvent?.Invoke(id);

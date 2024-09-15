@@ -31,6 +31,7 @@ public class PlayerMove : MonoBehaviour
     {
         inputState = InputState.PlayerInput;
         car = gameObject.GetComponent<BoxCollider>();
+        //GameObject.Find("Pizza Manager").GetComponent<pizzaMannager>().NextStop();
     }
 
     void Update()
@@ -65,6 +66,8 @@ public class PlayerMove : MonoBehaviour
 
     public void SwitchInput() 
     {
+        GameObject.Find("Pizza Manager").GetComponent<pizzaMannager>().NextStop();
+        /*
         Debug.Log("Switch!");
         switch (inputState)
         {
@@ -77,6 +80,7 @@ public class PlayerMove : MonoBehaviour
             default:
                 break;
         }
+        */
     }
 
     void NormalMove() 

@@ -23,7 +23,7 @@ public class Selected : MonoBehaviour
             {
                 //john.materials[1] = material;
                 john.material = material;
-                Debug.Log("hit");
+                //Debug.Log("hit");
             }
             else
             {
@@ -33,6 +33,28 @@ public class Selected : MonoBehaviour
         else
         {
             john.material = john.materials[1];
+        }
+        
+    }
+
+    private void OnMouseDown()
+    {
+        if (script.hit.collider.transform == transform && script.hit.distance <= distance)
+        {
+            switch (script.hit.collider.tag)
+            {
+                case "Bakery":
+                    Debug.Log("Bakery");
+                    break;
+                case "Stop":
+                    Debug.Log("Stop");
+                    break;
+                case "Car":
+                    Debug.Log("Car");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

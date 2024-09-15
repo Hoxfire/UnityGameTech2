@@ -18,6 +18,9 @@ public class PlayerSelect : MonoBehaviour
         layerMask = ~layerMask;
 
         Physics.Raycast(transform.position + new Vector3(0, 2, 0), Camera.main.transform.forward, out hit, Mathf.Infinity,layerMask);
+
+        
+
         // Does the ray intersect any objects excluding the player layer
         /*
         if (Physics.Raycast(transform.position + new Vector3(0,2,0),Camera.main.transform.forward, out hit, Mathf.Infinity) && hit.distance<0.5f && hit.collider.tag == "Selectable")
@@ -33,4 +36,6 @@ public class PlayerSelect : MonoBehaviour
         }
         */
     }
+
+    
 }

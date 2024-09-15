@@ -12,12 +12,6 @@ public class Door : MonoBehaviour
         EventManager.OpenDoorEvent += OpenDoor;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OpenDoor(int id) 
     {
         if (EventID == id) 
