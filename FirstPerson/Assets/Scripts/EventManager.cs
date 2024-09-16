@@ -10,7 +10,7 @@ public class EventManager : MonoBehaviour
 
     public static event Action<int> OpenDoorEvent;
 
-    public static event Action Delivered;
+    public static event Action<pizzaState> pizzaEvent;
 
     public static void OpenDoor(int id) 
     {
@@ -21,6 +21,11 @@ public class EventManager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public static void pizza(pizzaState pizza) 
+    {
+        pizzaEvent?.Invoke(pizza);
     }
 
     // Update is called once per frame
