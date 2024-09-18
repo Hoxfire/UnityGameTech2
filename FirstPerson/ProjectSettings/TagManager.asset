@@ -8,6 +8,7 @@ TagManager:
   - Stop
   - Bakery
   - Car
+  - Out
   layers:
   - Default
   - TransparentFX

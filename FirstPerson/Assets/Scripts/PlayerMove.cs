@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 using Physics = RotaryHeart.Lib.PhysicsExtension.Physics;
@@ -30,15 +31,15 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
-        inputState = InputState.CarInput;
+        inputState = InputState.PlayerInput;
         car = gameObject.GetComponent<BoxCollider>();
         //GameObject.Find("Pizza Manager").GetComponent<pizzaMannager>().NextStop();
     }
 
     void Update()
     {
-        //VertivalVolocity.y += gravity * Time.deltaTime;
-        //CheckGround();
+        VertivalVolocity.y += gravity * Time.deltaTime;
+        CheckGround();
         //NormalMove();
         
         switch (inputState)
@@ -67,21 +68,30 @@ public class PlayerMove : MonoBehaviour
 
     public void SwitchInput() 
     {
-        GameObject.Find("Pizza Manager").GetComponent<pizzaMannager>().NextStop();
-        /*
+        //GameObject.Find("Pizza Manager").GetComponent<pizzaMannager>().NextStop();
+        
         Debug.Log("Switch!");
         switch (inputState)
         {
             case InputState.PlayerInput:
-                inputState = InputState.CarInput;
+                if (gameObject.GetComponent<PlayerSelect>().hit.collider.CompareTag("Car"))
+                {
+                    inputState = InputState.CarInput;
+
+                    transform.position = GameObject.Find("body").transform.position;
+                    transform.rotation = GameObject.Find("body").transform.localRotation;
+                    Camera.main.transform.rotation = GameObject.Find("body").transform.localRotation;
+                    GameObject.Find("body").transform.parent = transform;
+                }
                 break;
             case InputState.CarInput:
                 inputState = InputState.PlayerInput;
+                GameObject.Find("body").transform.parent = null;
                 break;
             default:
                 break;
         }
-        */
+        
     }
 
     void NormalMove() 
@@ -100,7 +110,7 @@ public class PlayerMove : MonoBehaviour
     void CarMove() 
     {
         rb.useGravity = true;
-        Vector3 john = (transform.forward * Input.GetAxis("Pedle"))*carSpeed ;
+        Vector3 john = (transform.forward * (Input.GetAxis("Pedle") * -1) *horizontalInput.x )*carSpeed ;
         Vector3 james = (transform.up * Input.GetAxis("Horizontal")) * turnSpeed;
 
         //Debug.Log(john + (transform.right * horizontalInput.x));

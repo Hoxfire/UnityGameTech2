@@ -61,5 +61,6 @@ public class MouseLook : MonoBehaviour
 
             mainCamera.eulerAngles = targetRotation;
         }
+
     }
 }

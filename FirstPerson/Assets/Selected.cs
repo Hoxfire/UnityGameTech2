@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Selected : MonoBehaviour
@@ -44,16 +45,18 @@ public class Selected : MonoBehaviour
             switch (script.hit.collider.tag)
             {
                 case "Bakery":
-                    Debug.Log("Bakery");
-                    EventManager.pizza(pizzaState.Baking);
+                    Debug.Log("asd");
+                    EventManager.pizza(pizzaState.Out);
+                    GameObject.Find("PizzaManager").GetComponent<pizzaMannager>().pizzaEvent(pizzaState.Out);
                     break;
                 case "Stop":
                     Debug.Log("Stop");
                     EventManager.pizza(pizzaState.Delivered);
+
+                    GameObject.Find("PizzaManager").GetComponent<pizzaMannager>().pizzaEvent(pizzaState.Delivered);
                     break;
                 case "Car":
                     Debug.Log("Car");
-                    EventManager.pizza(pizzaState.Out);
                     break;
                 default:
                     break;

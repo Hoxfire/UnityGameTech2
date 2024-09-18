@@ -44,23 +44,36 @@ public class pizzaMannager : MonoBehaviour
         state = pizzaState.Delivered;
     }
 
-    private void pizzaEvent(pizzaState pizzaEvent) 
+    private void FixedUpdate()
     {
-        if (state == pizzaEvent)
+        if (transform.childCount==0)
         {
-            stateText.text = pizzaEvent.ToString();
+            stateText.text = "YOU WIN";
         }
+    }
 
+    public void pizzaEvent(pizzaState pizzaEvent) 
+    { 
+        state= pizzaEvent;
+        stateText.text = pizzaEvent.ToString();
         switch (state)
         {
             case pizzaState.Baking:
-                StartCoroutine(PizzaCounter(10));
                 break;
             case pizzaState.Ready:
                 break;
             case pizzaState.Out:
+                NextStop();
                 break;
             case pizzaState.Delivered:
+                if (GameObject.Find("Player").GetComponent<PlayerSelect>().hit.collider.name == stops[nextStop].name)
+                {
+                    FinishedStop();
+                    state = pizzaState.Baking;
+                }
+                else {
+                    StartCoroutine(PizzaCounter(1));
+                }
                 break;
             default:
                 break;
@@ -69,17 +82,10 @@ public class pizzaMannager : MonoBehaviour
 
     public IEnumerator PizzaCounter(float timer)
     {
-        float timerPrime=-0.1f;
-        while (timerPrime>=-360)
-        {
-            timerTrans.localRotation = Quaternion.Euler(0,0,timerPrime);
-            yield return new WaitForSeconds(0.01f);
-            timerPrime -= 1.1f;
-            Debug.Log(timerPrime);
-        }
-        //timerPrime = 0;
-        EventManager.pizza(pizzaState.Ready);
-        pizzaEvent(pizzaState.Ready);
+            stateText.text = "WrongPlace";
+            yield return new WaitForSeconds(timer);
+            stateText.text = "Out"; 
+        
     }
 }
 
