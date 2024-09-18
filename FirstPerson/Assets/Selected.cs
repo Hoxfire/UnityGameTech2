@@ -45,12 +45,15 @@ public class Selected : MonoBehaviour
             {
                 case "Bakery":
                     Debug.Log("Bakery");
+                    EventManager.pizza(pizzaState.Baking);
                     break;
                 case "Stop":
                     Debug.Log("Stop");
+                    EventManager.pizza(pizzaState.Delivered);
                     break;
                 case "Car":
                     Debug.Log("Car");
+                    EventManager.pizza(pizzaState.Out);
                     break;
                 default:
                     break;

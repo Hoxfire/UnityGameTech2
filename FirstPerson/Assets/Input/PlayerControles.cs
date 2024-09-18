@@ -31,7 +31,7 @@ public partial class @PlayerControles: IInputActionCollection2, IDisposable
                     ""name"": ""HoreMove"",
                     ""type"": ""PassThrough"",
                     ""id"": ""faa533ca-5d17-43c5-ad7d-b1f83753f7d1"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

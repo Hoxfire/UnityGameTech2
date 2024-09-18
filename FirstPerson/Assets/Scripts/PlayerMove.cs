@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,15 +30,15 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
-        inputState = InputState.PlayerInput;
+        inputState = InputState.CarInput;
         car = gameObject.GetComponent<BoxCollider>();
         //GameObject.Find("Pizza Manager").GetComponent<pizzaMannager>().NextStop();
     }
 
     void Update()
     {
-        VertivalVolocity.y += gravity * Time.deltaTime;
-        CheckGround();
+        //VertivalVolocity.y += gravity * Time.deltaTime;
+        //CheckGround();
         //NormalMove();
         
         switch (inputState)
@@ -99,15 +100,16 @@ public class PlayerMove : MonoBehaviour
     void CarMove() 
     {
         rb.useGravity = true;
-        Vector3 john = (transform.forward * horizontalInput.y) * carSpeed;
-        Vector3 james = (transform.up * horizontalInput.x) * turnSpeed;
+        Vector3 john = (transform.forward * Input.GetAxis("Pedle"))*carSpeed ;
+        Vector3 james = (transform.up * Input.GetAxis("Horizontal")) * turnSpeed;
 
         //Debug.Log(john + (transform.right * horizontalInput.x));
 
-        rb.AddForce(new Vector3(john.x,0,john.z));
+        rb.AddForce(john);
 
         //transform.Rotate(transform.up , james.y * Time.deltaTime);
-        rb.AddTorque(0,james.y * Time.deltaTime,0,ForceMode.Acceleration);
+        //rb.AddRelativeForce(james * Time.deltaTime);
+        transform.Rotate(james * Time.deltaTime);
     }
 
     public void shouldJump()
