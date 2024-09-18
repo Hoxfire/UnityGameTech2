@@ -110,7 +110,7 @@ public class PlayerMove : MonoBehaviour
     void CarMove() 
     {
         rb.useGravity = true;
-        Vector3 john = (transform.forward * (Input.GetAxis("Pedle") * -1) *horizontalInput.x )*carSpeed ;
+        Vector3 john = (transform.forward * (Input.GetAxis("Pedle") * -1))*carSpeed ;
         Vector3 james = (transform.up * Input.GetAxis("Horizontal")) * turnSpeed;
 
         //Debug.Log(john + (transform.right * horizontalInput.x));
