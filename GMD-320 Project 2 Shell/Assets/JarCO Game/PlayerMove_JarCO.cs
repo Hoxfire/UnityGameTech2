@@ -24,6 +24,9 @@ public class PlayerMove_JarCO : MonoBehaviour
         baseMovement = new BaseMovement();
         baseMovement.Player.Movement.performed +=
             ctx => moveInput = ctx.ReadValue<Vector2>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Start()
