@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/IncludedAssets/Scenes/StartScene.unity
-    guid: 637c27b80f6be9c42a221b77368de5f0
-  - enabled: 1
-    path: Assets/ExampleProject/MinigameStart_Wakefield.unity
-    guid: 80308b5044b7ed647ba8d3b613e410be
+    path: Assets/JarCO Game/MinigameScene_JareCO.unity
+    guid: 64c90de8ad773ef499a55386479a43e8
   m_configObjects: {}
