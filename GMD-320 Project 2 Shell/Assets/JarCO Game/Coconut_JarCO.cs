@@ -25,7 +25,11 @@ public class Coconut_JarCO : MonoBehaviour
         
         shadow.transform.position = transform.position - Vector3.up * (hit.distance-0.01f);
 
-        shadow.transform.localScale = new Vector3(hit.distance / 5,0, hit.distance / 5);
+        float shadowSize = Mathf.Clamp(hit.distance/5, 0.75f, 6); ;
+
+        
+
+        shadow.transform.localScale = new Vector3(shadowSize,0, shadowSize);
 
         Debug.Log(hit.distance);
 
