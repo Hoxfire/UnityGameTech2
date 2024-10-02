@@ -12,6 +12,8 @@ public class Coconut_JarCO : MonoBehaviour
 
     ParticleSystem thing;
 
+    [SerializeField] float downVelocity;
+
     private void Awake()
     {
         thing = GetComponent<ParticleSystem>();
@@ -26,16 +28,23 @@ public class Coconut_JarCO : MonoBehaviour
         shadow.transform.localScale = new Vector3(hit.distance / 5,0, hit.distance / 5);
 
         Debug.Log(hit.distance);
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.layer==8)
+        {
+            StartCoroutine(particle(gameObject));
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Net"))
+        {
+            GameManager_JarCO.instance.Score += 1;
+        }
     }
 
     IEnumerator particle(GameObject cocnut) 
