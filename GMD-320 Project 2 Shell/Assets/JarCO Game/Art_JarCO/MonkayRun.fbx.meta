@@ -123,12 +123,12 @@ ModelImporter:
       name: MonkayRun|LilGuySlideAction
       takeName: MonkayRun|LilGuySlideAction
       internalID: 348882359402684175
-      firstFrame: 6
+      firstFrame: 0
       lastFrame: 12
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
-      cycleOffset: 0
+      cycleOffset: -6
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
