@@ -7,6 +7,7 @@ public class Coconut_JarCO : MonoBehaviour
     RaycastHit hit;
 
     [SerializeField] GameObject shadow;
+    [SerializeField] GameObject modle;
 
     [SerializeField] LayerMask ground;
 
@@ -17,10 +18,13 @@ public class Coconut_JarCO : MonoBehaviour
     private void Awake()
     {
         thing = GetComponent<ParticleSystem>();
+
+        modle.GetComponent<Rigidbody>().AddTorque(Quaternion.ToEulerAngles(Random.rotation)*1000,ForceMode.Acceleration); 
     }
 
     private void Update()
     {
+
         Physics.Raycast(transform.position, -transform.up, out hit,Mathf.Infinity,ground);
         
         shadow.transform.position = transform.position - Vector3.up * (hit.distance-0.01f);
