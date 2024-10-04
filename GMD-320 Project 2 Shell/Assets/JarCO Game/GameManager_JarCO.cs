@@ -6,7 +6,7 @@ public class GameManager_JarCO : MonoBehaviour
 {
     public static GameManager_JarCO instance;
 
-    public int Score=0;
+    public int Score = 0;
 
     private void Awake()
     {
