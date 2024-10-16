@@ -35,7 +35,7 @@ public class Coconut_JarCO : MonoBehaviour
 
         shadow.transform.localScale = new Vector3(shadowSize,0, shadowSize);
 
-        Debug.Log(hit.distance);
+        //Debug.Log(hit.distance);
 
     }
 
@@ -51,7 +51,8 @@ public class Coconut_JarCO : MonoBehaviour
     {
         if (other.CompareTag("Net"))
         {
-            GameManager_JarCO.instance.Score += 1;
+            GameObject.Find("GameManager").GetComponent<GameManager_JarCO>().Score += 1;
+            Debug.Log("caught");
         }
     }
 
