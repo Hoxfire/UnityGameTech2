@@ -8,7 +8,8 @@ public enum GameState
     Title,
     Game,
     Win,
-    Lose
+    Lose,
+    Over
 }
 
 public class GameManager_JarCO : MonoBehaviour
@@ -17,6 +18,8 @@ public class GameManager_JarCO : MonoBehaviour
     private static EventManager_JarCO EventManager;
 
     public int Score = 0;
+
+    public int ScoreToBeat = 5;
 
     public GameState state = GameState.Title;
 
@@ -28,7 +31,7 @@ public class GameManager_JarCO : MonoBehaviour
         {
             instance = this;
         }
-
+        //StartCoroutine(StartTimer(1));
         EventManager = EventManager_JarCO.instance;
     }
 
@@ -51,6 +54,16 @@ public class GameManager_JarCO : MonoBehaviour
             case GameState.Lose:
                 EventManager.LoseScreen();
                 break;
+            case GameState.Over:
+                if (Score>=ScoreToBeat)
+                {
+                    changeState(GameState.Win);
+                }
+                else
+                {
+                    changeState(GameState.Lose);
+                }
+                break;
             default:
                 break;
         }
@@ -64,14 +77,19 @@ public class GameManager_JarCO : MonoBehaviour
     }
 
     public float timer = 30;
+
+    
+
     IEnumerator StartTimer(int startWait) 
     {
-        yield return new WaitForSeconds(startWait);
-        while (timer>=0) 
+        
+        while (timer!=0) 
         {
-            timer -=  Time.deltaTime;
+            yield return new WaitForSeconds(startWait);
+            timer -=  startWait;
             Timer.text = timer.ToString();
         }
+        changeState(GameState.Over);
     }
 }
 
